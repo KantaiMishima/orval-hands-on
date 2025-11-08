@@ -1,6 +1,6 @@
 import React from "react";
 import { useFindPetsByStatus } from "../api/pet/pet";
-import { ListItem, List as MuiList } from "@mui/material";
+import { Link, ListItem, ListItemButton, List as MuiList } from "@mui/material";
 
 export const List: React.FC = () => {
   const state = useFindPetsByStatus({
@@ -20,7 +20,9 @@ export const List: React.FC = () => {
     <MuiList>
       {state.data.data.map((item, index) => (
         <ListItem key={item.id || index}>
-          {item.name}
+          <ListItemButton href={`./?pet_id=${item.id}`} component={Link}>
+            {item.name}
+          </ListItemButton>
         </ListItem>
       ))}
     </MuiList>
