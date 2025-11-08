@@ -1,6 +1,7 @@
 # ハンズオンの内容
 
-## 「1. プロジェクト作成」
+## 1. プロジェクト作成
+[cec1b3...](https://github.com/KantaiMishima/orval-hands-on/commit/cec1b3b2c709ab85b813abcdbbf4f29b612b8a40)
 
 > mkdir orval-hands-on
 
@@ -10,11 +11,10 @@
 
 ↑ 基本対話形式の設定はそのままEnterで問題ないです
 
-## 「2. api ファイル生成」の内容
+## 2. api ファイル生成
 
-### api ファイル作成
-
-#### 依存関係を install
+### 依存関係を install
+[2034fbb...](https://github.com/KantaiMishima/orval-hands-on/commit/2034fbb4a3bfbbab56161ce2d23e13212c362473)
 
 > npm i --save orval msw @faker-js/faker -D
 
@@ -22,12 +22,14 @@
 
 > mkdir docs
 
-#### 今回の対象の openapi を用意
+### 今回の対象の openapi を用意
+[2034fbb...](https://github.com/KantaiMishima/orval-hands-on/commit/2034fbb4a3bfbbab56161ce2d23e13212c362473)
 
 以下から「https://petstore3.swagger.io/api/v3/openapi.json 」をダウンロードして docs 配下に配置
 https://petstore3.swagger.io/
 
-#### orval による生成
+### orval による生成
+[c238d0c...](https://github.com/KantaiMishima/orval-hands-on/commit/c238d0c27110ec1b69fb92e285314e17865a7271)
 
 orval.config.cjs
 
@@ -47,7 +49,7 @@ module.exports = {
 };
 ```
 
-#### package.json の scripts に追加
+package.json の scripts に追加
 
 ```
     "orval": "orval",
@@ -55,15 +57,14 @@ module.exports = {
 
 > npm run orval
 
-## 「3. 取得処理を作成：一覧表示」の内容
+## 3. 取得処理を作成：一覧表示
+[34bc32c...](https://github.com/KantaiMishima/orval-hands-on/commit/34bc32c7d500cbd7f4b765a450f531acea0c703c)
 
-### 取得処理を作成：一覧表示
-
-#### 依存関係を install
+### 依存関係を install
 
 > npm i --save @mui/material @emotion/react @emotion/styled
 
-#### コードを記述
+### コードを記述
 
 src/main.tsx から```import './index.css'を削除
 
@@ -121,11 +122,10 @@ function App() {
 export default App;
 ```
 
-## 「4. フォーム作成：値を取得して表示する」の内容
+## 4. フォーム作成：値を取得して表示する
+[09b184f...](https://github.com/KantaiMishima/orval-hands-on/commit/09b184f084ce68d4828388fd02f9640dd143a170)
 
-### フォーム作成：値を取得して表示する
-
-#### コードを記述
+### コードを記述
 
 src/components/List.tsx
 
@@ -215,11 +215,10 @@ function App() {
 export default App;
 ```
 
-## 「5. フォーム作成：値を取得して編集できるようにする」の内容
+## 5. フォーム作成：値を取得して編集できるようにする
+[7584b0a...](https://github.com/KantaiMishima/orval-hands-on/commit/7584b0aa970119e1b99acab4baf2fb1ab1dfdc90)
 
-### フォーム作成：値を取得して編集できるようにする
-
-#### コードを記述
+### コードを記述
 
 src/components/Detail.tsx
 
@@ -299,15 +298,14 @@ export const Detail: React.FC<{
 };
 ```
 
-## 「6. フォーム作成：フォームの値を送信する」の内容
+## 6. フォーム作成：フォームの値を送信する
+[24dff80...](https://github.com/KantaiMishima/orval-hands-on/commit/24dff8019d0b6e9091d11a24e3a638d4fc7bb3da)
 
-### フォーム作成：フォームの値を送信する
-
-#### 依存関係を install
+### 依存関係を install
 
 > npm i --save final-form react-final-form
 
-#### コードを記述
+### コードを記述
 
 src/components/Detail.tsx
 
@@ -434,16 +432,16 @@ export const Detail: React.FC<{
 };
 ```
 
-## 「7. validate 生成」の内容
+## 7. validate 生成
 
-### validate 生成
-
-#### 依存関係を install
+### 依存関係を install
+[188592b...](https://github.com/KantaiMishima/orval-hands-on/commit/188592b715cefb052ec2f47b59bec01c3cf0ff6e)
 
 > npm i --save zod
 
-#### orval を編集・再実行
+### orval を編集
 
+[188592b...](https://github.com/KantaiMishima/orval-hands-on/commit/188592b715cefb052ec2f47b59bec01c3cf0ff6e)
 orval.config.cjs に以下を追記
 
 ```orval.config.cjs
@@ -474,11 +472,12 @@ module.exports = {
 };
 ```
 
-orval を再実行
+### orval を再実行
+[f0922d4...](https://github.com/KantaiMishima/orval-hands-on/commit/f0922d4b2c2dcbd71d55ed749b17508ee5c53016)
 
 > npm run orval
 
-#### validate 処理を react final form 向けに wrap する関数を作成
+### validate 処理を react final form 向けに wrap する関数を作成
 
 > mkdir src/lib
 
@@ -499,7 +498,7 @@ export const generateValidatorByZod = <T>(schema: zod.ZodType<T>) => {
 }
 ```
 
-#### それぞれの field に validate を設置
+### それぞれの field に validate を設置
 
 src/components/Detail.tsx
 
@@ -516,7 +515,7 @@ import { updatePetBody } from "../api/pet/pet.zod";
           <Field name="status" validate={generateValidatorByZod(updatePetBody.shape.status)}>
 ```
 
-##### お試し
+#### お試し
 
 src/components/Detail.tsx のstatusに以下を追加
 
