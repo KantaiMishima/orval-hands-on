@@ -15,6 +15,8 @@ import { Field, Form, type FormRenderProps } from "react-final-form";
 import { useCallback } from "react";
 import type { Config } from "final-form";
 import axios from "axios";
+import { generateValidatorByZod } from "../lib/validate";
+import { updatePetBody } from "../api/pet/pet.zod";
 
 const PetForm = ({
   values,
@@ -28,7 +30,7 @@ const PetForm = ({
         <Avatar src={values?.photoUrls?.[0]} alt={values?.name} />
       </Grid>
       <Grid>
-        <Field name="name">
+        <Field name="name" validate={generateValidatorByZod(updatePetBody.shape.name)}>
           {({ input, meta }) => (
             <TextField
               {...input}
@@ -40,13 +42,14 @@ const PetForm = ({
         </Field>
       </Grid>
       <Grid>
-        <Field name="status">
+        <Field name="status" validate={generateValidatorByZod(updatePetBody.shape.status)}>
           {({ input, meta }) => (
             <>
               <Select {...input} label="ステータス" error={Boolean(meta.error)}>
                 <MenuItem value={"available" as PetStatus}>購入可能</MenuItem>
                 <MenuItem value={"pending" as PetStatus}>入荷待ち</MenuItem>
                 <MenuItem value={"sold" as PetStatus}>売り切れ</MenuItem>
+                <MenuItem value={"hogehoge"}>hogehoge</MenuItem>
               </Select>
               {meta.error && (
                 <Typography style={{ color: "red", marginTop: "0.5rem" }}>
