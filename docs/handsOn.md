@@ -26,6 +26,7 @@
 [2034fbb...](https://github.com/KantaiMishima/orval-hands-on/commit/2034fbb4a3bfbbab56161ce2d23e13212c362473)
 
 以下から「https://petstore3.swagger.io/api/v3/openapi.json 」をダウンロードして docs 配下に配置
+
 https://petstore3.swagger.io/
 
 ### orval による生成
@@ -36,7 +37,7 @@ orval.config.cjs
 ```
 module.exports = {
  "petstore-file": {
-   input: "./docs/openapi.yml",
+   input: "./docs/openapi.json",
    output: {
      mode: "tags-split",
      target: "src/api/petstore.ts",
