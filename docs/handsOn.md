@@ -448,7 +448,7 @@ orval.config.cjs に以下を追記
 ```orval.config.cjs
 module.exports = {
   "petstore-file": {
-    input: "./docs/openapi.yml",
+    input: "./docs/openapi.json",
     output: {
       mode: "tags-split",
       target: "src/api/petstore.ts",
@@ -461,7 +461,7 @@ module.exports = {
   // 追記
   "petstore-zod": {
     input: {
-      target: "./docs/openapi.yml",
+      target: "./docs/openapi.json",
     },
     output: {
       mode: 'tags-split',
